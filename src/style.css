@@ -1,0 +1,328 @@
+/* geo-attend-lab — Global Styles
+   Industrial dark dashboard theme.
+   Tailwind CSS base + custom design tokens.
+*/
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* ── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ── Base Reset ───────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #0a0f0d;
+  color: #f1f5f9;
+}
+
+/* ── Mobile App Shell Layout ─────────────────────────────────────────────── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  max-height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Tab Viewport: scrolls content vertically above the bottom navbar */
+#tab-viewport {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-pane {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  flex: 1;
+  animation: tabFade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tabFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Panel Component ──────────────────────────────────────────────────────── */
+.panel {
+  background: linear-gradient(145deg, #0f1612, #141e18);
+  border: 1px solid #1a2620;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.6);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.panel-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.panel-icon {
+  font-size: 1rem;
+}
+
+/* ── Audit Tab Styles ─────────────────────────────────────────────────────── */
+.audit-tab {
+  padding: 0.375rem 0.875rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.audit-tab:hover {
+  color: #94a3b8;
+  border-color: #2c3d34;
+}
+
+.audit-tab-active {
+  background: #1a2620;
+  color: #22c55e;
+  border-color: #166534;
+}
+
+/* ── Badge Components ─────────────────────────────────────────────────────── */
+.badge-inside {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.4rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.badge-outside {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.4rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-warn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.4rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-danger {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.4rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  animation: pulse 2s infinite;
+}
+
+.badge-unknown {
+  color: #4b5563;
+  font-size: 0.65rem;
+}
+
+/* ── User Location Pin (Leaflet divIcon) ──────────────────────────────────── */
+.user-pin {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-pin-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 2px solid #fff;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
+  z-index: 2;
+  position: relative;
+}
+
+.user-pin-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #22c55e;
+  opacity: 0.5;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.marker-outside .user-pin-dot {
+  background: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
+}
+.marker-outside .user-pin-ring {
+  border-color: #ef4444;
+}
+
+.marker-unknown .user-pin-dot {
+  background: #06b6d4;
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+}
+.marker-unknown .user-pin-ring {
+  border-color: #06b6d4;
+}
+
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.5; }
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ── Pocket Mode Overlay ──────────────────────────────────────────────────── */
+#pocket-mode-overlay {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Leaflet overrides for dark theme ────────────────────────────────────── */
+.leaflet-container {
+  background: #0a0f0d !important;
+  font-family: 'Inter', sans-serif;
+}
+
+.leaflet-control-zoom a {
+  background-color: #141e18 !important;
+  color: #94a3b8 !important;
+  border-color: #2c3d34 !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #1a2620 !important;
+  color: #22c55e !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(10, 15, 13, 0.7) !important;
+  color: #4b5563 !important;
+  font-size: 9px !important;
+}
+
+.leaflet-control-attribution a {
+  color: #374151 !important;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f1612;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2c3d34;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #22c55e;
+}
+
+/* ── Keyframe animations ──────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Table styles ─────────────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: #0f1612;
+  z-index: 1;
+}
+
+tbody tr:hover {
+  background: rgba(34, 197, 94, 0.03);
+}
+
+/* ── Utility: safe area padding for iPhone notch & Home Indicator ─────── */
+.safe-top    { padding-top: max(0.5rem, env(safe-area-inset-top)); }
+.safe-bottom { padding-bottom: max(0.6rem, env(safe-area-inset-bottom)); }
+
+.shadow-glow-green {
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.5);
+}
+
+.shadow-glow-red {
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.5);
+}
