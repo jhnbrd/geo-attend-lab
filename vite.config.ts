@@ -1,15 +1,14 @@
 import { defineConfig } from 'vite';
-import path from 'path';
+import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   server: {
     port: 8071,
-    https: false, // Set to true with certs for real-device WakeLock/Camera testing
     host: true,   // Expose to LAN for mobile device testing
     allowedHosts: ['geotest.jhnbrd.com', '.jhnbrd.com'],
   },
