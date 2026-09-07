@@ -326,3 +326,8 @@ tbody tr:hover {
 .shadow-glow-red {
   box-shadow: 0 0 24px rgba(239, 68, 68, 0.5);
 }
+
+/* ── Leaflet Dark Mode Tiles (No API key needed) ─────────────────────────── */
+.leaflet-dark-tiles {
+  filter: invert(100%) hue-rotate(180deg) brightness(85%) contrast(120%) saturate(60%) !important;
+}
