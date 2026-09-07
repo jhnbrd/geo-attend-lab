@@ -8,9 +8,13 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5173,
+    port: 8071,
     https: false, // Set to true with certs for real-device WakeLock/Camera testing
     host: true,   // Expose to LAN for mobile device testing
+  },
+  preview: {
+    port: 8071,
+    host: true,
   },
   build: {
     target: 'es2022',

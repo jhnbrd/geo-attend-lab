@@ -47,14 +47,14 @@ A mobile web app testing whether phone browsers (iOS Safari & Android Chrome) ca
 # 1. Install dependencies
 npm install
 
-# 2. Run dev server (accessible from phone on same Wi-Fi)
-npm run dev -- --host
+# 2. Run dev server on port 8071 (accessible from phone on same Wi-Fi)
+npm run dev
 
 # 3. Type check & build
 npm run build
 ```
 
-Open `http://localhost:5173` on desktop or visit the LAN IP shown in your terminal on your mobile device.
+Open `http://localhost:8071` on desktop or visit the LAN IP shown in your terminal on your mobile device.
 
 ---
 
